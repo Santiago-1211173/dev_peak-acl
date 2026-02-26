@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV='C:\Users\santi\Desktop\dev_preak-acl\_venv'
+VIRTUAL_ENV='C:\Users\santi\Desktop\dev_peak-acl\_venv'
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
