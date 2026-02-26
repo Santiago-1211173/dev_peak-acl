@@ -34,3 +34,12 @@ Repository = "https://github.com/Santiago-1211173/peak-acl"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+
+[tool.black]
+extend-exclude = '''
+/(\n  \.venv\n  | _venv\n  | venv\n  | build\n  | dist\n)/
+'''
+
+[tool.isort]
+profile = "black"
+skip_gitignore = true
