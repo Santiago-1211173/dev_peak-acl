@@ -1,4 +1,4 @@
-// Generated from c:/Users/santi/Desktop/dev_preak-acl/grammar/ACL.g4 by ANTLR 4.13.1
+// Generated from c:/Users/santi/Desktop/peak-acl/grammar/ACL.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -114,14 +114,6 @@ public class ACLParser extends Parser {
 			return getRuleContext(ParamContext.class,i);
 		}
 		public ACLmessageContext(MessageContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ACLListener ) ((ACLListener)listener).enterACLmessage(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ACLListener ) ((ACLListener)listener).exitACLmessage(this);
-		}
 	}
 
 	public final MessageContext message() throws RecognitionException {
@@ -181,14 +173,6 @@ public class ACLParser extends Parser {
 	public static class ACLperformativeContext extends PerformativeContext {
 		public TerminalNode SYMBOL() { return getToken(ACLParser.SYMBOL, 0); }
 		public ACLperformativeContext(PerformativeContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ACLListener ) ((ACLListener)listener).enterACLperformative(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ACLListener ) ((ACLListener)listener).exitACLperformative(this);
-		}
 	}
 
 	public final PerformativeContext performative() throws RecognitionException {
@@ -233,14 +217,6 @@ public class ACLParser extends Parser {
 			return getRuleContext(ValueContext.class,0);
 		}
 		public ACLparamContext(ParamContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ACLListener ) ((ACLListener)listener).enterACLparam(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ACLListener ) ((ACLListener)listener).exitACLparam(this);
-		}
 	}
 
 	public final ParamContext param() throws RecognitionException {
@@ -292,40 +268,16 @@ public class ACLParser extends Parser {
 			return getRuleContext(ValueContext.class,i);
 		}
 		public ListValueContext(ValueContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ACLListener ) ((ACLListener)listener).enterListValue(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ACLListener ) ((ACLListener)listener).exitListValue(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class StringContext extends ValueContext {
 		public TerminalNode STRING() { return getToken(ACLParser.STRING, 0); }
 		public StringContext(ValueContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ACLListener ) ((ACLListener)listener).enterString(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ACLListener ) ((ACLListener)listener).exitString(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class AtomContext extends ValueContext {
 		public TerminalNode SYMBOL() { return getToken(ACLParser.SYMBOL, 0); }
 		public AtomContext(ValueContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ACLListener ) ((ACLListener)listener).enterAtom(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ACLListener ) ((ACLListener)listener).exitAtom(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class NestedMessageContext extends ValueContext {
@@ -333,14 +285,6 @@ public class ACLParser extends Parser {
 			return getRuleContext(MessageContext.class,0);
 		}
 		public NestedMessageContext(ValueContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ACLListener ) ((ACLListener)listener).enterNestedMessage(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ACLListener ) ((ACLListener)listener).exitNestedMessage(this);
-		}
 	}
 
 	public final ValueContext value() throws RecognitionException {
