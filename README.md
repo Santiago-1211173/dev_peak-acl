@@ -200,11 +200,13 @@ pip install -e ".[dev]"
 **Run checks**
 
 ```bash
-pytest
+pytest --cov=peak_acl --cov-report=term-missing
 mypy peak_acl
 isort -c .
 black --check .
 ```
+
+The coverage report is printed in the terminal, including missing lines per module.
 
 **Commit style**
 

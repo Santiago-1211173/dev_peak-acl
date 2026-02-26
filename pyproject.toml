@@ -23,7 +23,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest", "pytest-asyncio", "black", "isort", "mypy"]
+dev = ["pytest", "pytest-asyncio", "pytest-cov", "black", "isort", "mypy"]
 docs = ["sphinx", "furo", "myst-parser"]
 
 [project.urls]
@@ -33,3 +33,4 @@ Repository = "https://github.com/Santiago-1211173/peak-acl"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
