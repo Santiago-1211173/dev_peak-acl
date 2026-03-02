@@ -109,3 +109,101 @@ def test_sl0_search_max_results(expr, expected):
     parsed = sl0.loads(expr)
     assert isinstance(parsed, sl0.Search)
     assert parsed.max_results == expected
+
+
+def test_ast_builder_visit_msg_function_action_and_build_ast(monkeypatch):
+    builder = sl_visitor.ASTBuilder()
+
+    class P:
+        @staticmethod
+        def getText():
+            return "inform"
+
+    class Msg:
+        @staticmethod
+        def performative():
+            return P()
+
+        @staticmethod
+        def slot():
+            return ["slot-a", "slot-b"]
+
+    monkeypatch.setattr(builder, "visit", lambda x: ("visited", x))
+    msg = builder.visitMsg(Msg())
+    assert msg.performative == "inform"
+    assert msg.slots == [("visited", "slot-a"), ("visited", "slot-b")]
+
+    class Lit:
+        def __init__(self, t):
+            self.t = t
+
+        def getText(self):
+            return self.t
+
+    assert builder.visitStringLiteral(Lit('"abc"')).text == "abc"
+    assert builder.visitNumberLiteral(Lit("3.5")).value == 3.5
+    assert builder.visitVariable(Lit("?x")).name == "?x"
+
+    class Fn:
+        class N:
+            @staticmethod
+            def getText():
+                return "sum"
+
+        @staticmethod
+        def NAME():
+            return Fn.N()
+
+        @staticmethod
+        def term():
+            return ["a", "b"]
+
+    class Act:
+        @staticmethod
+        def term(i):
+            return ["actor", "inner"][i]
+
+    fn = builder.visitFunctionExpr(Fn())
+    assert fn.name == "sum"
+    assert fn.args == [("visited", "a"), ("visited", "b")]
+
+    action = builder.visitActionExpr(Act())
+    assert action.actor == ("visited", "actor")
+    assert action.inner == ("visited", "inner")
+
+    class V:
+        def visit(self, tree):
+            return ("ok", tree)
+
+    monkeypatch.setattr(sl_visitor, "ASTBuilder", lambda: V())
+    assert sl_visitor.build_ast("tree") == ("ok", "tree")
+
+
+@pytest.mark.parametrize(
+    "kind",
+    ["stringLiteral", "numberLiteral", "variable", "functionExpr", "actionExpr"],
+)
+def test_ast_builder_visit_term_branches(kind, monkeypatch):
+    builder = sl_visitor.ASTBuilder()
+  
+    class TermCtx:
+        def __init__(self, active):
+            self.active = active
+
+        def stringLiteral(self):
+            return "S" if self.active == "stringLiteral" else None
+
+        def numberLiteral(self):
+            return "N" if self.active == "numberLiteral" else None
+
+        def variable(self):
+            return "V" if self.active == "variable" else None
+
+        def functionExpr(self):
+            return "F" if self.active == "functionExpr" else None
+
+        def actionExpr(self):
+            return "A" if self.active == "actionExpr" else None
+
+    monkeypatch.setattr(builder, "visit", lambda node: ("term", node))
+    assert builder.visitTerm(TermCtx(kind))[0] == "term"
