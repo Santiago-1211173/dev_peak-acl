@@ -185,7 +185,7 @@ def test_ast_builder_visit_msg_function_action_and_build_ast(monkeypatch):
 )
 def test_ast_builder_visit_term_branches(kind, monkeypatch):
     builder = sl_visitor.ASTBuilder()
-
+  
     class TermCtx:
         def __init__(self, active):
             self.active = active
